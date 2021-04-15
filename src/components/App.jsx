@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 
+import { Container, TextField, Snackbar, Drawer } from '@material-ui/core';
+import { Alert } from '@material-ui/lab';
+
 import GoodsList from './GoodsList';
 import BasketList from './BasketList';
-import Search from './Search';
+import Header from './Header';
 
 import { goods } from '../data/goods';
 
@@ -13,6 +16,8 @@ class App extends Component {
             order: [],
             search: '',
             goods: goods,
+            snackOpen: false,
+            cartOpen: false,
         };
     }
 
@@ -64,6 +69,7 @@ class App extends Component {
                 ],
             });
         }
+        this.openSnack();
     };
 
     removeFromOrder = (goodsItem) => {
@@ -74,25 +80,50 @@ class App extends Component {
         });
     };
 
+    openSnack = () => this.setState({ snackOpen: true });
+    closeSnack = () => this.setState({ snackOpen: false });
+    toggleDrawer = (isOpen) => this.setState({ cartOpen: isOpen });
+
     render() {
         return (
-            <div className='App'>
-                <div className='container'>
-                    <Search
+            <>
+                <Header
+                    basketInfo={this.state.order.length}
+                    handleCartClick={() => this.toggleDrawer(true)}
+                />
+                <Container maxWidth='xl' style={{ marginTop: '5rem' }}>
+                    <TextField
                         value={this.state.search}
                         onChange={this.handleChange}
+                        label='Поиск товаров'
+                        fullWidth
+                        style={{ marginBottom: '2rem' }}
                     />
                     <GoodsList
                         goods={this.state.goods}
                         setOrder={this.addToOrder}
                     />
-
+                </Container>
+                <Snackbar
+                    open={this.state.snackOpen}
+                    autoHideDuration={2000}
+                    onClose={this.closeSnack}
+                >
+                    <Alert onClose={this.closeSnack} severity='success'>
+                        Товар добавлен в корзину
+                    </Alert>
+                </Snackbar>
+                <Drawer
+                    anchor={'right'}
+                    open={this.state.cartOpen}
+                    onClose={() => this.toggleDrawer(false)}
+                >
                     <BasketList
                         order={this.state.order}
                         setOrder={this.removeFromOrder}
                     />
-                </div>
-            </div>
+                </Drawer>
+            </>
         );
     }
 }
