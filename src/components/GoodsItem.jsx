@@ -1,26 +1,37 @@
 import React from 'react';
 
-import { Grid } from '@material-ui/core';
+import { Grid, Box, Button, Typography } from '@material-ui/core';
 
 const GoodsItem = (props) => {
     const { name, price, setOrder } = props;
 
     return (
         <Grid item xs='12' md='4'>
-            <div className='card' style={{ border: '1px solid black' }}>
+            <Box
+                color='text.primary'
+                style={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    border: '1px solid black',
+                }}
+            >
                 <img
                     src={`https://via.placeholder.com/300x150.png?text=${name.slice(
                         0,
                         12
                     )}`}
-                    className='card-img-top'
                     alt={name}
                 />
-                <div className='card-body'>
-                    <h5 className='card-title'>{name}</h5>
-                    <p className='card-text'>Цена: {price} руб.</p>
-                    <button
-                        className='btn btn-primary'
+                <Box style={{ padding: '1rem' }}>
+                    <Typography variant='h5' component='h2'>
+                        {name}
+                    </Typography>
+                    <Typography variant='h6' style={{ lineHeight: 2.5 }}>
+                        Цена: {price} руб.
+                    </Typography>
+                    <Button
+                        variant='contained'
+                        color='primary'
                         onClick={() =>
                             setOrder({
                                 id: props.id,
@@ -30,9 +41,9 @@ const GoodsItem = (props) => {
                         }
                     >
                         Купить
-                    </button>
-                </div>
-            </div>
+                    </Button>
+                </Box>
+            </Box>
         </Grid>
     );
 };

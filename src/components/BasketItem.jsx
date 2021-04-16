@@ -1,16 +1,13 @@
 import React from 'react';
-import {
-    ListItem,
-    ListItemIcon,
-    ListItemText,
-    IconButton,
-} from '@material-ui/core';
+import { ListItem, IconButton, Typography } from '@material-ui/core';
 import { Close } from '@material-ui/icons';
 
 const BasketItem = (props) => {
     return (
         <ListItem>
-            {props.name} {props.price}руб x{props.quantity}
+            <Typography>
+                {props.name} {props.price} руб x{props.quantity}
+            </Typography>
             <IconButton
                 color='secondary'
                 onClick={() =>

@@ -6,6 +6,7 @@ import { Alert } from '@material-ui/lab';
 import GoodsList from './GoodsList';
 import BasketList from './BasketList';
 import Header from './Header';
+import Footer from './Footer';
 
 import { goods } from '../data/goods';
 
@@ -104,6 +105,7 @@ class App extends Component {
                         setOrder={this.addToOrder}
                     />
                 </Container>
+                <Footer />
                 <Snackbar
                     open={this.state.snackOpen}
                     autoHideDuration={2000}
