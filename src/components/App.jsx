@@ -91,7 +91,7 @@ class App extends Component {
                     basketInfo={this.state.order.length}
                     handleCartClick={() => this.toggleDrawer(true)}
                 />
-                <Container maxWidth='xl' style={{ marginTop: '5rem' }}>
+                <Container maxWidth='lg' style={{ marginTop: '5rem' }}>
                     <TextField
                         value={this.state.search}
                         onChange={this.handleChange}

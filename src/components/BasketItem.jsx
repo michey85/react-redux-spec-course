@@ -1,11 +1,18 @@
 import React from 'react';
+import {
+    ListItem,
+    ListItemIcon,
+    ListItemText,
+    IconButton,
+} from '@material-ui/core';
+import { Close } from '@material-ui/icons';
 
 const BasketItem = (props) => {
     return (
-        <li className='list-group-item'>
+        <ListItem>
             {props.name} {props.price}руб x{props.quantity}
-            <button
-                className='btn btn-primary'
+            <IconButton
+                color='secondary'
                 onClick={() =>
                     props.setOrder({
                         id: props.id,
@@ -14,9 +21,9 @@ const BasketItem = (props) => {
                     })
                 }
             >
-                Удалить из корзины
-            </button>
-        </li>
+                <Close />
+            </IconButton>
+        </ListItem>
     );
 };
 

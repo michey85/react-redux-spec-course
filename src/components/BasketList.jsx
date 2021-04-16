@@ -1,4 +1,12 @@
 import React from 'react';
+import {
+    List,
+    ListItem,
+    ListItemIcon,
+    ListItemText,
+    Divider,
+} from '@material-ui/core';
+import { ShoppingBasket } from '@material-ui/icons';
 
 import BasketItem from './BasketItem';
 
@@ -7,27 +15,40 @@ const BasketList = (props) => {
 
     if (!order.length) {
         return (
-            <ul className='basket list-group col-md-4'>
-                <li className='list-group-item active'>Корзина</li>
-                <li className='list-group-item'>Товаров нет</li>
-            </ul>
+            <List style={{ width: '420px' }}>
+                <ListItem>
+                    <ListItemIcon>
+                        <ShoppingBasket />
+                    </ListItemIcon>
+                    <ListItemText primary='Корзина' />
+                </ListItem>
+                <Divider />
+                <ListItem className='list-group-item'>Товаров нет</ListItem>
+            </List>
         );
     }
 
     return (
-        <ul className='basket list-group col-md-4'>
-            <li className='list-group-item active'>Корзина</li>
+        <List style={{ width: '420px' }}>
+            <ListItem>
+                <ListItemIcon>
+                    <ShoppingBasket />
+                </ListItemIcon>
+                <ListItemText primary='Корзина' />
+            </ListItem>
+            <Divider />
             {order.map((item, index) => (
                 <BasketItem key={index} setOrder={setOrder} {...item} />
             ))}
-            <li className='list-group-item active'>
+            <Divider />
+            <ListItem>
                 Общая стоимость:{' '}
                 {order.reduce((acc, item) => {
                     return acc + item.price * item.quantity;
                 }, 0)}{' '}
                 рублей.
-            </li>
-        </ul>
+            </ListItem>
+        </List>
     );
 };
 

@@ -1,11 +1,13 @@
 import React from 'react';
 
+import { Grid } from '@material-ui/core';
+
 const GoodsItem = (props) => {
     const { name, price, setOrder } = props;
 
     return (
-        <div className='col-12 col-md-6 px-md-2'>
-            <div className='card'>
+        <Grid item xs='12' md='4'>
+            <div className='card' style={{ border: '1px solid black' }}>
                 <img
                     src={`https://via.placeholder.com/300x150.png?text=${name.slice(
                         0,
@@ -31,7 +33,7 @@ const GoodsItem = (props) => {
                     </button>
                 </div>
             </div>
-        </div>
+        </Grid>
     );
 };
 
