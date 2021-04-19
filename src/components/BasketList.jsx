@@ -15,7 +15,7 @@ const BasketList = (props) => {
 
     if (!order.length) {
         return (
-            <List style={{ width: '420px' }}>
+            <List style={{ width: '420px', maxWidth: '90%' }}>
                 <ListItem>
                     <ListItemIcon>
                         <ShoppingBasket />
@@ -29,7 +29,7 @@ const BasketList = (props) => {
     }
 
     return (
-        <List style={{ width: '420px' }}>
+        <List style={{ width: '420px', maxWidth: '90%' }}>
             <ListItem>
                 <ListItemIcon>
                     <ShoppingBasket />
