@@ -1,8 +1,13 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import { ListItem, IconButton, Typography } from '@material-ui/core';
 import { Close } from '@material-ui/icons';
 
+import { removeFromOrder } from '../redux/actions/removeFromOrder';
+
 const BasketItem = (props) => {
+    const dispatch = useDispatch();
+
     return (
         <ListItem>
             <Typography>
@@ -10,13 +15,7 @@ const BasketItem = (props) => {
             </Typography>
             <IconButton
                 color='secondary'
-                onClick={() =>
-                    props.setOrder({
-                        id: props.id,
-                        name: props.name,
-                        price: props.price,
-                    })
-                }
+                onClick={() => dispatch(removeFromOrder(props.id))}
             >
                 <Close />
             </IconButton>

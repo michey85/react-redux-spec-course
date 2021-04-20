@@ -11,9 +11,7 @@ import { ShoppingBasket } from '@material-ui/icons';
 
 import BasketItem from './BasketItem';
 
-const BasketList = (props) => {
-    const { setOrder } = props;
-    // const order = useSelector((state) => state.shop.order);
+const BasketList = () => {
     const { order } = useSelector((state) => state.shop);
 
     if (!order.length) {
@@ -41,7 +39,7 @@ const BasketList = (props) => {
             </ListItem>
             <Divider />
             {order.map((item, index) => (
-                <BasketItem key={index} setOrder={setOrder} {...item} />
+                <BasketItem key={index} {...item} />
             ))}
             <Divider />
             <ListItem>

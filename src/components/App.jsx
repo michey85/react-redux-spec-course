@@ -32,14 +32,6 @@ class App extends Component {
         });
     };
 
-    removeFromOrder = (goodsItem) => {
-        const { order } = this.state;
-
-        this.setState({
-            order: order.filter((item) => item.id !== goodsItem.id),
-        });
-    };
-
     openSnack = () => this.setState({ snackOpen: true });
     closeSnack = () => this.setState({ snackOpen: false });
     toggleDrawer = (isOpen) => this.setState({ cartOpen: isOpen });
@@ -73,7 +65,7 @@ class App extends Component {
                     open={this.state.cartOpen}
                     onClose={() => this.toggleDrawer(false)}
                 >
-                    <BasketList setOrder={this.removeFromOrder} />
+                    <BasketList />
                 </Drawer>
             </>
         );

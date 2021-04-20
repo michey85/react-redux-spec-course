@@ -8,6 +8,7 @@ import {
 } from '@material-ui/core';
 import { ShoppingBasket } from '@material-ui/icons';
 
+// TODO: заменить basketInfo на получение инфы о кол-ве товаров в заказе из Redux
 const Header = ({ basketInfo, handleCartClick }) => {
     return (
         <AppBar>

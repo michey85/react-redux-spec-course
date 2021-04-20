@@ -1,4 +1,5 @@
 import { ADD_TO_ORDER } from '../actions/addToOrder';
+import { REMOVE_FROM_ORDER } from '../actions/removeFromOrder';
 
 const initialState = {
     order: [],
@@ -41,6 +42,14 @@ export function orderReducer(state = initialState, action) {
                     ],
                 };
             }
+        }
+        case REMOVE_FROM_ORDER: {
+            const { order } = state;
+
+            return {
+                ...state,
+                order: order.filter((item) => item.id !== action.payload.id),
+            };
         }
         default:
             return state;
