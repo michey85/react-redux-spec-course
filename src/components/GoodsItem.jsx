@@ -1,9 +1,12 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 
 import { Grid, Box, Button, Typography } from '@material-ui/core';
+import { addToOrder } from '../redux/actions/addToOrder';
 
 const GoodsItem = (props) => {
-    const { name, price, setOrder } = props;
+    const { name, price } = props;
+    const dispatch = useDispatch();
 
     return (
         <Grid item xs={12} md={4}>
@@ -33,11 +36,13 @@ const GoodsItem = (props) => {
                         variant='contained'
                         color='primary'
                         onClick={() =>
-                            setOrder({
-                                id: props.id,
-                                name: props.name,
-                                price: props.price,
-                            })
+                            dispatch(
+                                addToOrder({
+                                    id: props.id,
+                                    name: props.name,
+                                    price: props.price,
+                                })
+                            )
                         }
                     >
                         Купить

@@ -14,7 +14,6 @@ class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            order: [],
             search: '',
             goods: goods,
             snackOpen: false,
@@ -33,46 +32,6 @@ class App extends Component {
         });
     };
 
-    addToOrder = (goodsItem) => {
-        const { order } = this.state;
-
-        let quantity = 1;
-
-        const indexInOrder = order.findIndex(
-            (item) => item.id === goodsItem.id
-        );
-
-        if (indexInOrder > -1) {
-            quantity = order[indexInOrder].quantity + 1;
-
-            this.setState({
-                order: order.map((item) => {
-                    if (item.id !== goodsItem.id) return item;
-
-                    return {
-                        id: item.id,
-                        name: item.name,
-                        price: item.price,
-                        quantity,
-                    };
-                }),
-            });
-        } else {
-            this.setState({
-                order: [
-                    ...order,
-                    {
-                        id: goodsItem.id,
-                        name: goodsItem.name,
-                        price: goodsItem.price,
-                        quantity,
-                    },
-                ],
-            });
-        }
-        this.openSnack();
-    };
-
     removeFromOrder = (goodsItem) => {
         const { order } = this.state;
 
@@ -88,10 +47,7 @@ class App extends Component {
     render() {
         return (
             <>
-                <Header
-                    basketInfo={this.state.order.length}
-                    handleCartClick={() => this.toggleDrawer(true)}
-                />
+                <Header handleCartClick={() => this.toggleDrawer(true)} />
                 <Container maxWidth='lg' style={{ marginTop: '5rem' }}>
                     <TextField
                         value={this.state.search}
@@ -100,10 +56,7 @@ class App extends Component {
                         fullWidth
                         style={{ marginBottom: '2rem' }}
                     />
-                    <GoodsList
-                        goods={this.state.goods}
-                        setOrder={this.addToOrder}
-                    />
+                    <GoodsList goods={this.state.goods} />
                 </Container>
                 <Footer />
                 <Snackbar
