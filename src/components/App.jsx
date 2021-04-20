@@ -73,10 +73,7 @@ class App extends Component {
                     open={this.state.cartOpen}
                     onClose={() => this.toggleDrawer(false)}
                 >
-                    <BasketList
-                        order={this.state.order}
-                        setOrder={this.removeFromOrder}
-                    />
+                    <BasketList setOrder={this.removeFromOrder} />
                 </Drawer>
             </>
         );

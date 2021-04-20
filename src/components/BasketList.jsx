@@ -1,4 +1,5 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import {
     List,
     ListItem,
@@ -11,7 +12,9 @@ import { ShoppingBasket } from '@material-ui/icons';
 import BasketItem from './BasketItem';
 
 const BasketList = (props) => {
-    const { order, setOrder } = props;
+    const { setOrder } = props;
+    // const order = useSelector((state) => state.shop.order);
+    const { order } = useSelector((state) => state.shop);
 
     if (!order.length) {
         return (
