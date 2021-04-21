@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 
-import { Container, TextField, Snackbar, Drawer } from '@material-ui/core';
-import { Alert } from '@material-ui/lab';
+import { Container, TextField, Drawer } from '@material-ui/core';
 
 import GoodsList from './GoodsList';
 import BasketList from './BasketList';
+import { SnackInfo } from './SnackInfo';
 import Header from './Header';
 import Footer from './Footer';
 
@@ -16,7 +16,6 @@ class App extends Component {
         this.state = {
             search: '',
             goods: goods,
-            snackOpen: false,
             cartOpen: false,
         };
     }
@@ -51,15 +50,7 @@ class App extends Component {
                     <GoodsList goods={this.state.goods} />
                 </Container>
                 <Footer />
-                <Snackbar
-                    open={this.state.snackOpen}
-                    autoHideDuration={2000}
-                    onClose={this.closeSnack}
-                >
-                    <Alert onClose={this.closeSnack} severity='success'>
-                        Товар добавлен в корзину
-                    </Alert>
-                </Snackbar>
+                <SnackInfo />
                 <Drawer
                     anchor={'right'}
                     open={this.state.cartOpen}

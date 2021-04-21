@@ -1,8 +1,11 @@
 import { ADD_TO_ORDER } from '../actions/addToOrder';
 import { REMOVE_FROM_ORDER } from '../actions/removeFromOrder';
+import { CLOSE_SNACK } from '../actions/closeSnack';
+import { OPEN_SNACKBAR } from '../actions/openSnack';
 
 const initialState = {
     order: [],
+    snackOpen: false,
 };
 
 export function orderReducer(state = initialState, action) {
@@ -27,6 +30,7 @@ export function orderReducer(state = initialState, action) {
                             quantity: item.quantity + 1,
                         };
                     }),
+                    snackOpen: true,
                 };
             } else {
                 return {
@@ -40,6 +44,7 @@ export function orderReducer(state = initialState, action) {
                             quantity: 1,
                         },
                     ],
+                    snackOpen: true,
                 };
             }
         }
@@ -51,6 +56,16 @@ export function orderReducer(state = initialState, action) {
                 order: order.filter((item) => item.id !== action.payload.id),
             };
         }
+        case OPEN_SNACKBAR:
+            return {
+                ...state,
+                snackOpen: true,
+            };
+        case CLOSE_SNACK:
+            return {
+                ...state,
+                snackOpen: false,
+            };
         default:
             return state;
     }

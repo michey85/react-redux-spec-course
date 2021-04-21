@@ -1,3 +1,4 @@
+import { useSelector } from 'react-redux';
 import {
     AppBar,
     Toolbar,
@@ -8,8 +9,9 @@ import {
 } from '@material-ui/core';
 import { ShoppingBasket } from '@material-ui/icons';
 
-// TODO: заменить basketInfo на получение инфы о кол-ве товаров в заказе из Redux
-const Header = ({ basketInfo, handleCartClick }) => {
+const Header = ({ handleCartClick }) => {
+    const { order } = useSelector((state) => state.shop);
+
     return (
         <AppBar>
             <Toolbar style={{ justifyContent: 'space-between' }}>
@@ -19,7 +21,7 @@ const Header = ({ basketInfo, handleCartClick }) => {
                     </Link>
                 </Typography>
                 <IconButton color='inherit' onClick={handleCartClick}>
-                    <Badge badgeContent={basketInfo} color='secondary'>
+                    <Badge badgeContent={order.length} color='secondary'>
                         <ShoppingBasket />
                     </Badge>
                 </IconButton>
