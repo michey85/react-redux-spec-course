@@ -2,6 +2,7 @@ import { ADD_TO_ORDER } from '../actions/addToOrder';
 import { REMOVE_FROM_ORDER } from '../actions/removeFromOrder';
 import { CLOSE_SNACK } from '../actions/closeSnack';
 import { OPEN_SNACKBAR } from '../actions/openSnack';
+import { INIT_ORDER } from '../actions/initOrder';
 
 const initialState = {
     order: [],
@@ -10,6 +11,11 @@ const initialState = {
 
 export function orderReducer(state = initialState, action) {
     switch (action.type) {
+        case INIT_ORDER:
+            return {
+                ...state,
+                order: action.payload,
+            };
         case ADD_TO_ORDER: {
             const { order } = state;
 

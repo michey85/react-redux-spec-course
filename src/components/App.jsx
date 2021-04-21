@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-
+import { connect } from 'react-redux';
 import { Container, TextField, Drawer } from '@material-ui/core';
+
+import { initOrder } from '../redux/actions/initOrder';
 
 import GoodsList from './GoodsList';
 import BasketList from './BasketList';
@@ -35,6 +37,14 @@ class App extends Component {
     closeSnack = () => this.setState({ snackOpen: false });
     toggleDrawer = (isOpen) => this.setState({ cartOpen: isOpen });
 
+    componentDidMount() {
+        const order = localStorage.getItem('order');
+
+        if (order) {
+            this.props.initOrder(JSON.parse(order));
+        }
+    }
+
     render() {
         return (
             <>
@@ -63,4 +73,4 @@ class App extends Component {
     }
 }
 
-export default App;
+export default connect(null, { initOrder })(App);
