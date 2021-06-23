@@ -8,7 +8,7 @@ import { store } from './redux/store';
 import './index.css';
 
 ReactDOM.render(
-    <BrowserRouter>
+    <BrowserRouter basename='/react-redux-spec-course'>
         <Provider store={store}>
             <App />
         </Provider>
