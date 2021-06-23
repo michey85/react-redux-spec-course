@@ -3,6 +3,9 @@ import { REMOVE_FROM_ORDER } from '../actions/removeFromOrder';
 import { CLOSE_SNACK } from '../actions/closeSnack';
 import { OPEN_SNACKBAR } from '../actions/openSnack';
 import { INIT_ORDER } from '../actions/initOrder';
+import {INCREASE_QUANTITY}  from '../actions/incQuantity';
+import {DECREASE_QUANTITY} from '../actions/decQuantity';
+import {CLEAN_ORDER} from '../actions/cleanOrder'
 
 const initialState = {
     order: [],
@@ -62,6 +65,41 @@ export function orderReducer(state = initialState, action) {
                 order: order.filter((item) => item.id !== action.payload.id),
             };
         }
+        case INCREASE_QUANTITY: {
+            const { order } = state;
+
+            return {
+                ...state,
+                order: order.map((item) => {
+                    if (item.id !== action.payload.id) return item;
+
+                    return {
+                        ...item,
+                        quantity: item.quantity + 1,
+                    }
+                })
+            }
+        }
+        case DECREASE_QUANTITY: {
+            const { order } = state;
+
+            return {
+                ...state,
+                order: order.map((item) => {
+                    if (item.id !== action.payload.id) return item;
+
+                    return {
+                        ...item,
+                        quantity: item.quantity - 1,
+                    }
+                })
+            }
+        }
+        case CLEAN_ORDER:
+            return {
+                ...state,
+                order: [],
+            }
         case OPEN_SNACKBAR:
             return {
                 ...state,
